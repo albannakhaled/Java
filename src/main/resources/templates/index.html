@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>JSON Display</title>
+    <style>
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Extracted IDs and URLs</h1>
+<ol>
+    <!-- Loop through the list of IdUrl objects -->
+    <li th:each="idUrl : ${idUrlList}">
+        <pre th:text="'ID: ' + ${idUrl.id} + ', URL: ' + ${idUrl.url}"></pre>
+    </li>
+</ol>
+</body>
+</html>
