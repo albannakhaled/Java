@@ -3,7 +3,10 @@ package org.example.json.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.json.model.JsonDataDTO;
+import org.example.rest.client.PhoneRestClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.io.File;
@@ -15,6 +18,8 @@ import org.springframework.ui.Model;
 
 @Controller
 public class JsonController {
+    @Autowired 
+    private PhoneRestClient phoneRestClient;
 
     @Value("${file.path}")
     private String path;
@@ -59,6 +64,12 @@ public class JsonController {
                 extractIdsAndUrls(arrayElement, idUrlList); // Recursively extract from array elements
             }
         }
+    }
+
+    @GetMapping("/getPhone")
+    public ResponseEntity<String> getPhone(){
+        String phone = phoneRestClient.getPhone();
+        return ResponseEntity.ok(phone);
     }
 }
 

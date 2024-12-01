@@ -1,0 +1,68 @@
+<!-- Document for file package -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>File Handling package</title>
+</head>
+<body>
+    <!-- package for handling File -->
+    <h1>File Handling package</h1>
+    <p style="font-size: x-large;">
+        This package contains classes that are used to handle files in Java.
+        <b>java.io.File</b>
+    </p>
+    <ol>
+        <li>
+            <h2>Create a folder</h2>
+            <div>
+                <pre style="background-color:bisque;">
+                    <code style="color: black; font-weight: 600; font-size: larger;">
+                        public static void createFolder(String folderPath){
+                            File folder = new File(folderPath);
+                            if(folder.exists()){
+                                System.out.println("Folder already exists");
+                            }else{
+                                folder.mkdir();
+                                System.out.println("Folder created successfully");
+                            }
+                        }
+                    </code>
+                </pre>
+            </div>
+            <h2>Check folder if exists</h2>
+            <div>
+                <pre style="background-color:bisque;">
+                    <code style="color: black; font-weight: 600; font-size: larger;">
+                        public static void checkFolder(String folderPath){
+                            File folder = new File(folderPath);
+                            if(folder.exists()){
+                                System.out.println("Folder exists");
+                            }else{
+                                System.out.println("Folder does not exist");
+                            }
+                        }
+                    </code>
+                </pre>
+            </div>
+            <h2>Rename a Folder</h2>
+            <div>
+                <pre style="background-color:bisque;">
+                    <code style="color: black; font-weight: 600; font-size: larger;">
+                        public static void renameFolder(String folderPath, String newFolderPath){
+                            File folder = new File(folderPath);
+                            File newFolder = new File(newFolderPath);
+                            if(folder.exists()){
+                                folder.renameTo(newFolder);
+                                System.out.println("Folder renamed successfully");
+                            }else{
+                                System.out.println("Folder does not exist");
+                            }
+                        }
+                    </code>
+                </pre>
+            </div>
+        </li>
+    </ol>
+</body>
+</html>
