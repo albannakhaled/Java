@@ -3,7 +3,10 @@ package org.example.json.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.json.model.JsonDataDTO;
+import org.example.json.model.School;
+import org.example.json.model.SchoolData;
 import org.example.rest.client.PhoneRestClient;
+import org.example.rest.client.SchoolClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +23,10 @@ import org.springframework.ui.Model;
 public class JsonController {
     @Autowired 
     private PhoneRestClient phoneRestClient;
+    @Autowired
+    private SchoolData schoolData;
+    @Autowired
+    private SchoolClient schoolClient;
 
     @Value("${file.path}")
     private String path;
@@ -70,6 +77,19 @@ public class JsonController {
     public ResponseEntity<String> getPhone(){
         String phone = phoneRestClient.getPhone();
         return ResponseEntity.ok(phone);
+    }
+
+    @GetMapping(value = "/school", produces = "application/json")
+    public ResponseEntity<String> getSchoolData() {
+        School school = schoolData.createSchool();
+        String json = schoolData.toJson(school);
+        return ResponseEntity.ok(json);
+    }
+
+    @GetMapping("/getSchool")
+    public ResponseEntity<School> getSchooll(){
+        School school = schoolClient.getSchool();
+        return ResponseEntity.ok(school);
     }
 }
 
